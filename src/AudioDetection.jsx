@@ -43,7 +43,7 @@ export default function AudioDetection() {
       const formData = new FormData();
       formData.append("file", file);
       const API_URL = import.meta.env.VITE_APP_API_URL;
-      const response = await fetch(API_URL+'/predict', {
+      const response = await fetch(API_URL+'/predict/', {
         method: "POST",
         body: formData,
       });
