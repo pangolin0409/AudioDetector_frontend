@@ -47,7 +47,7 @@ export default function FileUpload({ onFileSelected }) {
   const handleFileSelection = (file) => {
     setError(null);
     
-    const validTypes = ['audio/flac', 'audio/x-m4a', 'audio/wav', 'audio/mpeg', 'audio/mp3', 'audio/webm', 'audio/ogg'];
+    const validTypes = ['audio/flac', 'audio/wav', 'audio/mpeg', 'audio/mp3', 'audio/webm', 'audio/ogg'];
     if (!validTypes.includes(file.type)) {
       setError(t('error_invalid_file_type'));
       // return;

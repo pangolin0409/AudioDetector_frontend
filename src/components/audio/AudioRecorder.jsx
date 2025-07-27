@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mic, MicOff, Square, Play, Pause, Download } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import toWav from 'audiobuffer-to-wav';
 
 export default function AudioRecorder({ onRecordingComplete }) {
   const { t } = useTranslation();
@@ -155,13 +156,25 @@ export default function AudioRecorder({ onRecordingComplete }) {
     }
   };
 
-  const downloadRecording = () => {
-    if (audioURL) {
-      const link = document.createElement('a');
-      link.href = audioURL;
-      link.download = `recording-${new Date().toISOString().slice(0, 19)}.webm`;
-      link.click();
-    }
+  const downloadRecording = async () => {
+    if (!recordedBlob) return;
+
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const arrayBuffer = await recordedBlob.arrayBuffer();
+
+    audioContext.decodeAudioData(arrayBuffer, (audioBuffer) => {
+      const wavBuffer = toWav(audioBuffer);
+
+      const wavBlob = new Blob([new DataView(wavBuffer)], {
+        type: 'audio/wav',
+      });
+
+      const url = URL.createObjectURL(wavBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `recording-${new Date().toISOString().slice(0, 19)}.wav`;
+      a.click();
+    });
   };
 
   const formatTime = (seconds) => {
