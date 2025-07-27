@@ -93,6 +93,19 @@ export default function FileUpload({ onFileSelected }) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
+
+  const handleloading = async (file) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      await onFileSelected(file);
+    } catch (err) {
+      setError(err.message || t('error_analysis'));
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <Card className="w-full max-w-2xl mx-auto shadow-lg border-0 bg-white/80 backdrop-blur-sm">
       <CardContent className="p-8">
@@ -192,7 +205,7 @@ export default function FileUpload({ onFileSelected }) {
             />
             
             <Button
-              onClick={() => onFileSelected(selectedFile)}
+              onClick={() => handleloading(selectedFile)}
               disabled={isLoading}
               className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-3 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
             >
