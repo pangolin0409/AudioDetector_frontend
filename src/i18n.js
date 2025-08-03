@@ -17,9 +17,9 @@ i18n
         translation: {
           audio_detection: 'Audio Detection',
           history: 'History',
-          lab_title: 'NCU MIS MLPLab - Audio Deepfake Detector',
+          lab_title: 'Audio Deepfake Detector',
           lab_subtitle: 'AI-Powered Audio Authentication',
-          footer_copyright: '© 2025 NCU MIS MLPLab - Audio Deepfake Detector',
+          footer_copyright: '© 2025 Audio Deepfake Detector',
           footer_warning: 'This system is for academic research, and there is still a chance of misjudgment of fake audio.',
           footer_support_format: 'Supported formats: WAV, MP3',
           footer_real_time_recording: 'Real-time recording identification',
@@ -93,9 +93,9 @@ i18n
         translation: {
           audio_detection: '音訊辨識',
           history: '歷史記錄',
-          lab_title: '國立中央大學資管系多模語言研究室 - 真偽語音辨識系統',
+          lab_title: '真偽語音辨識系統',
           lab_subtitle: 'AI-Powered Audio Authentication',
-          footer_copyright: '© 2025 國立中央大學資管系多模態語言研究室 - 真偽語音辨識系統',
+          footer_copyright: '© 2025 真偽語音辨識系統',
           footer_warning: '本系統是學術研究，偽造音頻仍有誤判的機率',
           footer_support_format: '支援格式：WAV, MP3',
           footer_real_time_recording: '即時錄音辨識',
