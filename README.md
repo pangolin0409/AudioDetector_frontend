@@ -1,12 +1,59 @@
-# React + Vite
+# 真偽語音偵測系統 (Audio Deepfake Detection System)
+1. 專案概述
+本專案是一個基於深度學習的真偽語音偵測系統，旨在應對日益猖獗的音訊深度偽造（Audio Deepfake）技術所帶來的挑戰。系統能夠接收一段語音檔案，並快速分析判斷其為真實人聲或是由 AI 合成的語音。
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+此專案解決了以下問題：
 
-Currently, two official plugins are available:
+資訊安全：防止利用合成語音進行的詐騙、假冒身份等惡意行為。
+媒體可信度：幫助辨識新聞、社交媒體中可能存在的誤導性音訊內容。
+技術驗證：提供一個高效能的後端 API 服務，可輕易整合至既有的應用程式或工作流程中。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 架構與功能設計
 
-## Expanding the ESLint configuration
+*   **架構設計**：基於 `Vite` + `React` 搭建現代化的前端開發環境，確保了快速的開發啟動速度和高效能的打包輸出。
+*   **部署架構**： 前端包板後上傳至 AWS S3，以 Cloudfront 的方式做 CDN，購買域名後掛 TLS 憑證上去。
+![](system_architecture.webp)
+*   **核心功能開發**：
+    *   **音訊輸入模組**：開發了兩種音訊輸入方式：
+        1.  **即時錄音**：使用 `Web Audio API` 實現了瀏覽器端的即時錄音功能，並處理音訊數據的格式轉換與上傳。
+        2.  **檔案上傳**：建立了拖放與點擊上傳元件 (`FileUpload.jsx`)，支援多種音訊格式，並提供上傳進度顯示。
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## 技術 (Tech Stack)
+
+| 類別 | 技術 / 工具 |
+| :--- | :--- |
+| **前端框架** | `React.js` |
+| **打包與建置工具** | `Vite` |
+| **樣式** | `Tailwind CSS`, `PostCSS` |
+| **狀態管理** | `React Hooks (Context API)` |
+| **語言** | `JavaScript (ES6+)`, `JSX` |
+| **API 串接** | `Fetch API` / `Axios` |
+| **程式碼品質** | `ESLint` |
+| **國際化** | `i18next` |
+
+## 安裝與使用方式
+
+```bash
+# 1. 複製專案
+git clone https://github.com/pangolin0409/AudioDetector_frontend.git
+
+# 2. 進入專案目錄
+cd AudioDetector_frontend
+
+# 3. 安裝依賴
+npm install
+
+# 4. 設定環境變數
+# 複製 .env.example (如果有的話) 為 .env，並填入後端 API 的 URL
+cp .env.example .env
+# VITE_API_BASE_URL=http://your-backend-api-url
+
+# 5. 啟動開發伺服器
+npm run dev
+```
+
+## 未來改進方向
+
+*   **數據視覺化增強**：引入如 `D3.js` 或 `Chart.js` 等庫，提供更多樣化的數據視覺化圖表（例如：顯示音訊波形的聲譜圖），幫助使用者更深入地理解音訊內容。
+*   **可解釋人工智慧（英語：Explainable AI，縮寫為XAI）**：除了檢測語音的真假以外，還能提供一份報告講述聲音特徵哪邊異常，例如：F1、F2 共振峰不連續、靜音片段過多等原因。
