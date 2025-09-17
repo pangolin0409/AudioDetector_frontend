@@ -36,21 +36,33 @@
 
 ```bash
 # 1. 複製專案
+```
 git clone https://github.com/pangolin0409/AudioDetector_frontend.git
-
+```
 # 2. 進入專案目錄
+```
 cd AudioDetector_frontend
-
-# 3. 安裝依賴
+```
+# 3. 安裝依賴 (需要預先安裝 Node.js)
+```
 npm install
-
+```
 # 4. 設定環境變數
-# 複製 .env.example (如果有的話) 為 .env，並填入後端 API 的 URL
-cp .env.example .env
-# VITE_API_BASE_URL=http://your-backend-api-url
+開發環境變數檔案是 .env，其中 VITE_API_BASE_URL 是指後端 Web Server domain 或是 IP，預設是 localhost:8000
 
-# 5. 啟動開發伺服器
+# 5. 啟動伺服器
+** 請注意！這是開發模式，如果要生產環境，需要 npm run build，將包板內容部署到 web server**
+```
 npm run dev
+```
+
+# 6. 包版（部署到生產環境步驟）
+
+建立一個 .env.production，裡面填寫```VITE_API_BASE_URL=http://yourwebserver.com```
+
+包版的 html, css, javascript 會放到一個 dist，裡面即靜態網頁，會抓.env.production來包版
+```
+npm run build
 ```
 
 ## 未來改進方向
