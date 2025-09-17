@@ -34,7 +34,6 @@
 
 ## 安裝與使用方式
 
-```bash
 # 1. 複製專案
 ```
 git clone https://github.com/pangolin0409/AudioDetector_frontend.git
